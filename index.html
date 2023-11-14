@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      background-color: #f4f4f4;
+      display: flex;
+      /* align-items: center; */
+      justify-content: center;
+      /* height: 80vh; Adjusted height */
+      /* margin: 0; */
+      margin-top: 90px;
+      background-image: url(https://source.unsplash.com/1600x1000/?scenary);
+      background-image: url(https://source.unsplash.com/1600x1000/?mountain);
+      background-image: url(https://source.unsplash.com/1600x1000/?lakes);
+      
+      box-shadow: #888888;
+    }
+
+    form {
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      padding: 20px;
+      width: 350px; /* Adjusted width */
+      max-width: 400px;
+      margin: auto;
+      /* background-image: url(https://source.unsplash.com/1600x1000/?nature); */
+      background-image: url(https://source.unsplash.com/1600x1000/?scenary);
+      background-image: url(https://source.unsplash.com/1600x1000/?mountain);
+      background-image: url(https://source.unsplash.com/1600x1000/?lakes);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      background-color:#808080;
+      max-width: fit-content;
+      padding: 8px; 
+      border-radius: 18px;
+      margin:0 auto; 
+      margin-bottom: 15px;
+      color: whitesmoke;
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+
+    input {
+      /* width: 100%; */
+      width:300px;
+      padding: 8px;
+      margin-bottom: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      background-color: rgb(0, 110, 255);
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 18px;
+      cursor: pointer;
+      width: 320px;
+      margin-top: 20px;
+    }
+
+    #result {
+    margin-top: 20px;
+    font-weight: bold;
+    color: white;
+    text-align: center; 
+    display: block;
+    margin-left: auto; 
+    margin-right: auto; 
+    background-color: #808080;
+    border-radius: 80px;
+}
+
+h3{
+  color: white;
+  background-color:rgb(0, 110, 255);
+  padding:5px;
+  max-width: fit-content;
+  margin:0 auto;
+  margin-bottom: 20px;
+  margin-top: 10px;
+  border-radius: 50px;
+  padding:10px 15px;
+}
+
+  </style>
+  <title>Evaporation Rate (Water) Calculator</title>
+</head>
+<body>
+
+
+
+  <form id="evaporationForm">
+
+    
+      <h3>Evaporation Rate (Water) Calculator</h3>
+    
+    <label for="velocity">Velocity of Air (m/s)</label>
+    <input type="number" id="velocity" required style="width:fit-content;margin-left: 87px;border-radius: 100px;">
+
+    <label for="surfaceArea">Water Surface Area (m<sup>2</sup>)</label>
+    <input type="number" id="surfaceArea" required style="width:fit-content;margin-left: 87px;border-radius: 100px;">
+
+    <label for="maxHumidity">Maximum Humidity Ratio of Saturated Air</label>
+    <input type="number" id="maxHumidity" required style="width:fit-content;margin-left: 87px;border-radius: 100px;">
+
+    <label for="currentHumidity">Current Humidity Ratio of Air</label>
+    <input type="number" id="currentHumidity" required style="width:fit-content;margin-left: 87px; border-radius: 100px;">
+
+    <button type="button" onclick="calculateEvaporation()" style="border-radius: 100px;">Calculate</button>
+
+    <div id="result"></div>
+  </form>
+
+  <script>
+    function calculateEvaporation() {
+      const velocity = parseFloat(document.getElementById('velocity').value);
+      const surfaceArea = parseFloat(document.getElementById('surfaceArea').value);
+      const maxHumidity = parseFloat(document.getElementById('maxHumidity').value);
+      const currentHumidity = parseFloat(document.getElementById('currentHumidity').value);
+
+      const evaporationRate = ((25 + 19 * velocity) * surfaceArea * (maxHumidity - currentHumidity)).toFixed(2);
+
+      document.getElementById('result').innerHTML = `Evaporation Rate :<br> ${evaporationRate} kg/hour`;
+    }
+  </script>
+
+</body>
+</html>
